@@ -38,7 +38,7 @@ date = dp.dates
 
 data = pd.DataFrame(columns=[date], index = criteria)
 dp.M = list(map(list, zip(*dp.M)))
-for i in range (13):
+for i in range (12):
     data.loc[criteria[i], dp.dates] = dp.M[i][1:]
     
 print(data.head())
@@ -89,8 +89,8 @@ loading_scores = pd.Series(pca.components_[0], index=criteria)
 sorted_loading_scores = loading_scores.abs().sort_values(ascending=False)
 # ensuite on récupère le top 10 des gènes
 top_10_genes = sorted_loading_scores[0:10].index.values
-"""
+
 print(loading_scores[top_10_genes])
-"""
+
 # on constate que les valeurs sont très proches donc beaucoup de gènes sont importants pour départager les deux 
 # pools (et pas simplement un ou deux)
