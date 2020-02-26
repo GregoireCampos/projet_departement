@@ -4,23 +4,43 @@ Spyder Editor
 
 This is a temporary script file.
 """
+import data_process as dp
 import pandas as pd
 import numpy as np
 import random as rd
 from sklearn.decomposition import PCA
 from sklearn import preprocessing
 import matplotlib.pyplot as plt
+"""
+genes = [dp.M[0][1:]]
+col = dp.dates
+data = pd.DataFrame(columns=col, index = genes)
+for gene in data.index:
+    for j in range(61):
+        data.loc[gene, col[j]] = dp.M[j]
 
-genes = ['gene' + str(i) for i in range (1,101)]
-wt = ['wt' + str(i) for i in range (1,6)]
-ko = ['ko' + str(i) for i in range (1,6)]
+genes = ['gene' + str(i) for i in range(1,101)]
+
+wt = ['wt'+str(i) for i in range (1,6)]
+ko = ['ko'+str(i) for i in range (1,6)]
+
 data = pd.DataFrame(columns=[*wt, *ko], index = genes)
 
-for gene in data.index :
-    data.loc[gene, 'wt1':'wt5'] = np.random.poisson(lam = rd.randrange(10,1000), size = 5) #on change la moyenne 
-                                                                                            #de la loi de poisson
-    data.loc[gene, 'ko1':'ko5'] = np.random.poisson(lam = rd.randrange(10,1000), size = 5)
+for gene in data.index:
+    data.loc[gene, 'wt1':'wt5'] = np.random.poisson(lam=rd.randrange(10,1000), size=5)
+    data.loc[gene, 'ko1':'ko5'] = np.random.poisson(lam=rd.randrange(10,1000), size=5)
 
+"""
+
+criteria = dp.M[0]
+
+date = dp.dates
+
+data = pd.DataFrame(columns=[date], index = criteria)
+dp.M = list(map(list, zip(*dp.M)))
+for i in range (13):
+    data.loc[criteria[i], dp.dates] = dp.M[i][1:]
+    
 print(data.head())
 print(data.shape) 
 # la on centre et scale les data, pour que la moyenne soit 0 et que la standard deviation soit 1. 
@@ -43,7 +63,7 @@ plt.show()
 
 # la première colonne explique beaucoup (environ 88%) donc une représentation 2D de cette valeur, en utilisant
 # PC1 et PC2 (?), devrait être une bonne représentation du bail global
-pca_df = pd.DataFrame(pca_data, index=[*wt, *ko], columns = labels)
+pca_df = pd.DataFrame(pca_data, index=[date], columns = labels)
 # le but et d'obtenir une matruce où mes lignes ont un nom de sample et les conolles 
 # un nom de PC
 # ensuite on trace avec matplotlib en ajoutant des noms au graph:
@@ -64,7 +84,7 @@ plt.show()
 # pour séparer les deux clusters le long de l'axe des abscisses
 # On commence par créer des Series pandas avec les loading scores de PC1. Elles sont indexées
 # par 0 donc PC1 = 0
-loading_scores = pd.Series(pca.components_[0], index=genes)
+loading_scores = pd.Series(pca.components_[0], index=criteria)
 # ensuite on trie les loading scores selon leur magnitude (= valeur absolue)
 sorted_loading_scores = loading_scores.abs().sort_values(ascending=False)
 # ensuite on récupère le top 10 des gènes
