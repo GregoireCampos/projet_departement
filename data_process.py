@@ -11,6 +11,7 @@ workbook = xlrd.open_workbook('C:/Users/campo/Desktop/excel_percentage.xlsx')
 SheetNameList = workbook.sheet_names()
 #SheetNameList = excel_percentage
 worksheet = workbook.sheet_by_name(SheetNameList[0])
+#j'ai directement modifié les chiffres sur le fichier xlsx en les pondérant
 num_rows = worksheet.nrows 
 num_cells = worksheet.ncols 
 #print( 'num_rows, num_cells', num_rows, num_cells )

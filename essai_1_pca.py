@@ -46,7 +46,9 @@ print(data.shape)
 # la on centre et scale les data, pour que la moyenne soit 0 et que la standard deviation soit 1. 
 # Il faut qu'on transpose parce qu'il faut des lignes plutôt que des colonnes pour les scaler
 scaled_data = preprocessing.scale (data.T)   
+# création de l'objet PCA
 pca = PCA()
+# maths de la pca (calcul des loading scores et des variations)
 pca.fit(scaled_data)
 pca_data = pca.transform(scaled_data)
 # on calcule le pourcentage de variation de chaque composante principale
@@ -61,12 +63,8 @@ plt.xlabel('Principal component')
 plt.title('Scree plot')
 plt.show()
 
-# la première colonne explique beaucoup (environ 88%) donc une représentation 2D de cette valeur, en utilisant
-# PC1 et PC2 (?), devrait être une bonne représentation du bail global
 pca_df = pd.DataFrame(pca_data, index=[date], columns = labels)
-# le but et d'obtenir une matruce où mes lignes ont un nom de sample et les conolles 
-# un nom de PC
-# ensuite on trace avec matplotlib en ajoutant des noms au graph:
+
 """
 plt.scatter(pca_df.PC1, pca_df.PC2)
 plt.title('My PCA Graph')
