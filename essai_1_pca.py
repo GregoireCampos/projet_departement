@@ -46,6 +46,7 @@ print(data.shape)
 # la on centre et scale les data, pour que la moyenne soit 0 et que la standard deviation soit 1. 
 # Il faut qu'on transpose parce qu'il faut des lignes plutôt que des colonnes pour les scaler
 scaled_data = preprocessing.scale (data.T)   
+
 # création de l'objet PCA
 pca = PCA()
 # maths de la pca (calcul des loading scores et des variations)
@@ -62,10 +63,8 @@ plt.ylabel('Percentage of Explained Variance')
 plt.xlabel('Principal component')
 plt.title('Scree plot')
 plt.show()
-
-pca_df = pd.DataFrame(pca_data, index=[date], columns = labels)
-
 """
+pca_df = pd.DataFrame(pca_data, index=[date], columns = labels)
 plt.scatter(pca_df.PC1, pca_df.PC2)
 plt.title('My PCA Graph')
 plt.xlabel('PC1 - {0}%'.format(per_var[0]))

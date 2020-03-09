@@ -6,8 +6,7 @@ Created on Wed Feb 26 12:38:07 2020
 """
 import xlrd
 import numpy as np
-
-workbook = xlrd.open_workbook('C:/Users/campo/Desktop/excel_percentage.xlsx')
+workbook = xlrd.open_workbook('C:/Users/campo/projet_dep/excel_percentage_ponderes.xlsx')
 SheetNameList = workbook.sheet_names()
 #SheetNameList = excel_percentage
 worksheet = workbook.sheet_by_name(SheetNameList[0])
