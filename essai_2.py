@@ -78,7 +78,6 @@ print(data.shape)
 # la on centre et scale les data, pour que la moyenne soit 0 et que la standard deviation soit 1. 
 # Il faut qu'on transpose parce qu'il faut des lignes plutôt que des colonnes pour les scaler
 scaled_data = preprocessing.scale (data.T)   
-
 # création de l'objet PCA
 pca = PCA()
 # maths de la pca (calcul des loading scores et des variations)
@@ -110,9 +109,9 @@ loading_scores = pd.Series(pca.components_[0], index=criteria)
 # ensuite on trie les loading scores selon leur magnitude (= valeur absolue)
 sorted_loading_scores = loading_scores.abs().sort_values(ascending=False)
 # ensuite on récupère le top 5 des gènes
-top_5_genes = sorted_loading_scores[0:5].index.values
+top_10_genes = sorted_loading_scores[0:10].index.values
 
-print(loading_scores[top_5_genes])
+print(loading_scores[top_10_genes])
 
 # on constate que les valeurs sont très proches donc beaucoup de gènes sont importants pour départager les deux 
 # pools (et pas simplement un ou deux)
