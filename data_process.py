@@ -48,7 +48,7 @@ while i < 62 :
     while curr_cell < num_cells:
         cell_value = worksheet.cell_value(curr_row, curr_cell)
         if type(cell_value) == float :
-            ligne.append(round(cell_value,2))
+            ligne.append(round(cell_value,4))
         else :
             ligne.append(cell_value)
         curr_cell += 1
